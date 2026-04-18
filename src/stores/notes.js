@@ -1,25 +1,29 @@
-import { defineStore } from "pinia";
-import { ref } from "vue";
+import { defineStore } from 'pinia'
+import { ref } from 'vue'
 
+export const useNoteStore = defineStore(
+  'notes',
+  () => {
+    const notes = ref([])
 
-
-export const useNoteStore = defineStore("notes", () =>{
-
-  const notes = ref([
-    {
-      id:"1",
-      title:"ir a comprar la sena",
-      marked:false
-    },
-    {
-      id:"1",
-      title:"ir a comprar la cena",
-      marked:false
+    const createId = () => {
+      return Date.now.toString(36) + Math.random().toString(36).slice(2)
     }
-  ])
 
+    const addNote = (title) => {
+      notes.value.unshift({
+        id: createId(),
+        title,
+        marked: false,
+      })
+    }
 
-  return {
-    notes,
-  }
-})
+    return {
+      notes,
+      addNote,
+    }
+  },
+  {
+    persist: true,
+  },
+)

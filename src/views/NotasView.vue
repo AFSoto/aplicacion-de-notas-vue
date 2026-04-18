@@ -1,4 +1,5 @@
 <script setup>
+import CreateNote from '@/components/CreateNote.vue';
 import NoteCart from '@/components/NoteCart.vue';
 import TheHeader from '@/components/TheHeader.vue';
 import { useNoteStore } from '@/stores/notes'
@@ -22,7 +23,9 @@ const noteStore = useNoteStore()
         />
       </div>
     </div>
+    <CreateNote/>
   </section>
+
 </template>
 
 <style>
